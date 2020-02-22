@@ -1,4 +1,4 @@
-import { FC, ReactElement } from 'react';
+import { FC } from 'react';
 
 import { ShallowWrapper } from 'enzyme';
 
@@ -10,7 +10,7 @@ export const findByTestAttr = (wrapper: ShallowWrapper, val: string) => {
     return wrapper.find(`[data-test="${val}"]`);
 };
 
-export const checkProps = (component: JSX.Element, conformingProps: {[key: string]: any}) => {
+export const checkProps = <Props>(component: FC<Props>, conformingProps: Props) => {
     const propError = checkPropTypes(
         component.propTypes,
         conformingProps,
