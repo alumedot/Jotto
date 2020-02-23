@@ -27,10 +27,12 @@ describe('render', () => {
             expect(component.length).toBe(1);
         });
         test('renders input box', () => {
-
+            const inputBox = findByTestAttr(wrapper, "input-box");
+            expect(inputBox.length).toBe(1);
         });
         test('renders submit button', () => {
-
+            const submitButton = findByTestAttr(wrapper, "submit-button");
+            expect(submitButton.length).toBe(1);
         });
     });
     describe('word has been guessed', () => {
