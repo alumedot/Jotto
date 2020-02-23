@@ -1,15 +1,18 @@
 import { FC } from 'react';
 
+import { createStore, applyMiddleware } from 'redux';
 import { ReactWrapper, ShallowWrapper } from 'enzyme';
 
 // @ts-ignore
 import checkPropTypes from 'check-prop-types';
 
 import rootReducer from '../src/store/rootReducer';
-import { createStore } from 'redux';
+import { middlewares } from '../src/configureStore';
+
 
 export const storeFactory = <State>(initialState: State) => {
-    return createStore(rootReducer, initialState);
+    const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
+    return createStoreWithMiddleware(rootReducer, initialState);
 };
 
 
