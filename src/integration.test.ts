@@ -1,6 +1,5 @@
 import { storeFactory } from '../test/testUtils';
 import { guessWord } from './store/guessedWords/actions';
-import { debuglog } from 'util';
 
 
 describe('guessWord action dispatcher', () => {
@@ -24,7 +23,6 @@ describe('guessWord action dispatcher', () => {
                     letterMatchCount: 3,
                 }]
             };
-            debuglog('');
             expect(newState).toEqual(expectedState);
         });
         test('updates state correctly for successful guess', () => {

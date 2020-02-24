@@ -10,7 +10,7 @@ import rootReducer from '../src/store/rootReducer';
 import { middlewares } from '../src/configureStore';
 
 
-export const storeFactory = <State>(initialState: State) => {
+export const storeFactory = <State>(initialState?: State) => {
     const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
     return createStoreWithMiddleware(rootReducer, initialState);
 };
