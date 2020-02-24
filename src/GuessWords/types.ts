@@ -1,7 +1,5 @@
-export interface IGuessedWords {
-    guessedWord: string;
-    letterMatchCount: number;
-}
+import { IGuessedWords } from '../store/guessedWords/types/redux';
+
 
 export interface IProps {
     // secretWord: string;
