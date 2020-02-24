@@ -16,7 +16,7 @@ export const storeFactory = <State>(initialState?: State) => {
 };
 
 
-export const findByTestAttr = (wrapper: ShallowWrapper | ReactWrapper, val: string) => {
+export const findByTestAttr = <P, S, Component>(wrapper: ShallowWrapper<P, S, Component> | ReactWrapper<P, S, Component>, val: string) => {
     return wrapper.find(`[data-test="${val}"]`);
 };
 

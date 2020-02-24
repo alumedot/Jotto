@@ -1,5 +1,6 @@
 import { storeFactory } from '../test/testUtils';
 import { guessWord } from './store/guessedWords/actions';
+import { IGuessWord } from './store/guessedWords/types/redux';
 
 
 describe('guessWord action dispatcher', () => {
@@ -13,7 +14,7 @@ describe('guessWord action dispatcher', () => {
             store = storeFactory(initialState);
         });
         test('updates state correctly for unsuccessful guess', () => {
-            store.dispatch(guessWord(unsuccessfulGuess));
+            store.dispatch<IGuessWord>(guessWord(unsuccessfulGuess));
             const newState = store.getState();
             const expectedState = {
                 ...initialState,

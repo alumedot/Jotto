@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { guessWord } from 'store/guessedWords/actions';
+
 import { IRootReduxState } from '../store/types';
 
-import { IProps, IReduxInjectedState } from './types';
+import { IProps, IReduxInjectedState, IReduxInjectedDispatch } from './types';
 
 
 export class Input extends Component<IProps> {
@@ -38,4 +40,6 @@ const mapStateToProps = ({success}: IRootReduxState) => {
     return {success};
 };
 
-export default connect<IReduxInjectedState, {}, {}, IRootReduxState>(mapStateToProps)(Input);
+export default connect<
+    IReduxInjectedState, IReduxInjectedDispatch, {}, IRootReduxState
+>(mapStateToProps, { guessWord })(Input);

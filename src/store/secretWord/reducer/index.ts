@@ -1,8 +1,9 @@
-import { IGetSecretWord, IState } from '../types/redux';
+import { IState } from '../types/redux';
 import { ActionTypes } from '../types/ActionTypes';
+import { IAction } from '../../types';
 
 
-export default (state: IState = '', action: IGetSecretWord): IState => {
+export default (state: IState = '', action: IAction): IState => {
     switch (action.type) {
         case ActionTypes.SetSecretWord: return action.payload;
         default: return state;

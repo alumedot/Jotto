@@ -1,5 +1,15 @@
+import { ShallowWrapper } from 'enzyme';
+import { Input as InputUnconnected } from './Input';
+
+
 export interface IReduxInjectedState {
     success: boolean;
 }
 
-export interface IProps extends IReduxInjectedState {}
+export interface IReduxInjectedDispatch {
+    guessWord(word: string): void;
+}
+
+export interface IProps extends IReduxInjectedState, IReduxInjectedDispatch {}
+
+export type IInputWrapper = ShallowWrapper<IProps, {}, InputUnconnected>;
