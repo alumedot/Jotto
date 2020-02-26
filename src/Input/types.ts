@@ -12,4 +12,8 @@ export interface IReduxInjectedDispatch {
 
 export interface IProps extends IReduxInjectedState, IReduxInjectedDispatch {}
 
+export interface IState {
+    value: string;
+}
+
 export type IInputWrapper = ShallowWrapper<IProps, {}, InputUnconnected>;
