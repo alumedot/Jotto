@@ -6,8 +6,7 @@ import { storeFactory } from '../../test/testUtils';
 import { DEFAULT_REDUX_STATE} from '../store/constants';
 import { IRootReduxState } from '../store/types';
 
-import App from './App';
-import { App as AppUnconnected } from './App';
+import App, { AppUnconnected } from './App';
 import { IProps } from './types';
 
 
@@ -43,4 +42,19 @@ describe('redux properties', () => {
         const getSecretWordAction = wrapper.instance().props.getSecretWord;
         expect(getSecretWordAction).toBeInstanceOf(Function);
     });
+});
+
+test('`getSecretWord` runs on App mount', () => {
+    const getSecretWordMock = jest.fn();
+    const wrapper = shallow(
+        <AppUnconnected
+            secretWord={''}
+            guessedWords={[]}
+            success={false}
+            getSecretWord={getSecretWordMock}
+        />
+    );
+    wrapper.instance().componentDidMount!();
+    const getSecretWordCallCount = getSecretWordMock.mock.calls.length;
+    expect(getSecretWordCallCount).toBe(1);
 });

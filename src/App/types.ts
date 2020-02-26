@@ -2,7 +2,7 @@ import { ShallowWrapper } from 'enzyme';
 
 import { IState as IStateGuessedWords } from '../store/guessedWords/types/redux';
 
-import { App as AppUnconnected } from './App';
+import { AppUnconnected } from './App';
 
 
 export interface IReduxInjectedState {

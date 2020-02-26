@@ -8,7 +8,7 @@ import { IRootReduxState } from '../store/types';
 import { IProps, IReduxInjectedState, IReduxInjectedDispatch } from './types';
 
 
-export class Input extends Component<IProps> {
+export class InputUnconnected extends Component<IProps> {
     render() {
         return (
             <div data-test="component-input">
@@ -42,4 +42,4 @@ const mapStateToProps = ({success}: IRootReduxState) => {
 
 export default connect<
     IReduxInjectedState, IReduxInjectedDispatch, {}, IRootReduxState
->(mapStateToProps, { guessWord })(Input);
+>(mapStateToProps, { guessWord })(InputUnconnected);

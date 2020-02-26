@@ -1,5 +1,5 @@
 import { ShallowWrapper } from 'enzyme';
-import { Input as InputUnconnected } from './Input';
+import { InputUnconnected } from './Input';
 
 
 export interface IReduxInjectedState {

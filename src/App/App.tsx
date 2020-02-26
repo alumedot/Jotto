@@ -14,7 +14,11 @@ import './App.css';
 import { IProps, IReduxInjectedState, IReduxInjectedDispatch } from './types';
 
 
-export class App extends Component<IProps> {
+export class AppUnconnected extends Component<IProps> {
+    componentDidMount() {
+        this.props.getSecretWord();
+    }
+
     render() {
         return (
             <div className="container">
@@ -35,4 +39,4 @@ const mapStateToProps = ({secretWord, success, guessedWords}: IRootReduxState) =
 
 export default connect<
     IReduxInjectedState, IReduxInjectedDispatch, {}, IRootReduxState
->(mapStateToProps, { getSecretWord })(App);
+>(mapStateToProps, { getSecretWord })(AppUnconnected);
