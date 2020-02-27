@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { MouseEvent, Component } from 'react';
 import { connect } from 'react-redux';
 
 import { guessWord } from 'store/guessedWords/actions';
@@ -11,26 +11,32 @@ import { IProps, IState, IReduxInjectedState, IReduxInjectedDispatch } from './t
 export class InputUnconnected extends Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
-        this.state = {
-            value: '',
-        }
+        this.state = { currentGuess: '' }
     }
+
+    submitGuessedWord = (e: MouseEvent) => {
+        e.preventDefault();
+        const { currentGuess } = this.state;
+
+        currentGuess && currentGuess.length && this.props.guessWord(currentGuess);
+    };
 
     render() {
         return (
             <div data-test="component-input">
                 {
                     this.props.success ? null : (
-                        <form onSubmit={(event) => event.preventDefault()} className="form-inline">
+                        <form className="form-inline">
                             <input
                                 data-test="input-box"
                                 className="mb-2 mx-sm-3"
                                 type="text"
+                                value={this.state.currentGuess}
                                 placeholder="enter guess"
-                                onChange={e => this.setState({ value: e.target.value })}
+                                onChange={e => this.setState({ currentGuess: e.target.value })}
                             />
                             <button
-                                onClick={() => this.props.guessWord(this.state.value)}
+                                onClick={this.submitGuessedWord}
                                 data-test="submit-button"
                                 className="btn btn-primary mb-2"
                                 type="submit"

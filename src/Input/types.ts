@@ -13,7 +13,7 @@ export interface IReduxInjectedDispatch {
 export interface IProps extends IReduxInjectedState, IReduxInjectedDispatch {}
 
 export interface IState {
-    value: string;
+    currentGuess: string;
 }
 
 export type IInputWrapper = ShallowWrapper<IProps, {}, InputUnconnected>;
