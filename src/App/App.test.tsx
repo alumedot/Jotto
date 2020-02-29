@@ -3,11 +3,12 @@ import { shallow } from 'enzyme';
 
 import { storeFactory } from '../../test/testUtils';
 
-import { DEFAULT_REDUX_STATE} from '../store/constants';
+import { DEFAULT_REDUX_STATE } from '../store/constants';
 import { IRootReduxState } from '../store/types';
 
 import App, { AppUnconnected } from './App';
 import { IProps } from './types';
+import { Status } from '../constants';
 
 
 const setup = (initialState: Partial<IRootReduxState> = DEFAULT_REDUX_STATE) => {
@@ -19,11 +20,11 @@ const setup = (initialState: Partial<IRootReduxState> = DEFAULT_REDUX_STATE) => 
 };
 
 describe('redux properties', () => {
-    test('has access to `success` state', () => {
-        const success = true;
-        const wrapper = setup({ success });
-        const successProp = wrapper.instance().props.success;
-        expect(successProp).toBe(success);
+    test('has access to `status` state', () => {
+        const status = Status.InProgress;
+        const wrapper = setup({ status });
+        const statusProp = wrapper.instance().props.status;
+        expect(statusProp).toBe(status);
     });
     test('has access to `secretWord` state', () => {
         const secretWord = 'party';
@@ -50,7 +51,7 @@ test('`getSecretWord` runs on App mount', () => {
         <AppUnconnected
             secretWord={''}
             guessedWords={[]}
-            success={false}
+            status={Status.InProgress}
             getSecretWord={getSecretWordMock}
         />
     );

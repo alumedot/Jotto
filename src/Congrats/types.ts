@@ -1,3 +1,6 @@
+import { Status } from '../constants';
+
+
 export interface IProps {
-    success?: boolean;
+    status?: Status;
 }

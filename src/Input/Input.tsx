@@ -1,4 +1,4 @@
-import React, { MouseEvent, Component } from 'react';
+import React, { Component, MouseEvent } from 'react';
 import { connect } from 'react-redux';
 
 import { guessWord } from 'store/guessedWords/actions';
@@ -7,7 +7,8 @@ import { resetGame } from '../store/common/actions';
 
 import { IRootReduxState } from '../store/types';
 
-import { IProps, IState, IReduxInjectedState, IReduxInjectedDispatch } from './types';
+import { IProps, IReduxInjectedDispatch, IReduxInjectedState, IState } from './types';
+import { Status } from '../constants';
 
 
 export class InputUnconnected extends Component<IProps, IState> {
@@ -38,7 +39,7 @@ export class InputUnconnected extends Component<IProps, IState> {
         return (
             <div data-test="component-input">
                 {
-                    this.props.success ? (
+                    this.props.status === Status.Victory ? (
                         <button
                             onClick={this.resetGame}
                             data-test="new-word-button"
@@ -65,6 +66,13 @@ export class InputUnconnected extends Component<IProps, IState> {
                             >
                                 Submit
                             </button>
+                            <button
+                                onClick={this.submitGuessedWord}
+                                data-test="giveUp-button"
+                                className="btn btn-danger mb-2 ml-2"
+                            >
+                                Give Up
+                            </button>
                         </form>
                     )
                 }
@@ -73,8 +81,8 @@ export class InputUnconnected extends Component<IProps, IState> {
     }
 }
 
-const mapStateToProps = ({success}: IRootReduxState) => {
-    return {success};
+const mapStateToProps = ({ status }: IRootReduxState) => {
+    return { status };
 };
 
 export default connect<

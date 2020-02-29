@@ -3,7 +3,8 @@ import { shallow } from 'enzyme';
 
 import { findByTestAttr, storeFactory } from '../../test/testUtils';
 import Input, { InputUnconnected } from './Input';
-import { IProps, IInputWrapper } from './types';
+import { IInputWrapper, IProps } from './types';
+import { Status } from '../constants';
 
 
 const setup = (initialState = {}) => {
@@ -19,7 +20,7 @@ describe('render', () => {
     describe('word has not been guessed', () => {
         let wrapper: IInputWrapper;
         beforeEach(() => {
-            const initialState = { success: false };
+            const initialState = { status: Status.InProgress };
             wrapper = setup(initialState);
         });
         test('renders component without error', () => {
@@ -42,7 +43,7 @@ describe('render', () => {
     describe('word has been guessed', () => {
         let wrapper: IInputWrapper;
         beforeEach(() => {
-            const initialState = { success: true };
+            const initialState = { status: Status.Victory };
             wrapper = setup(initialState);
         });
         test('renders component without error', () => {
@@ -65,12 +66,12 @@ describe('render', () => {
 });
 
 describe('redux props', () => {
-    test('has success piece of state as prop', () => {
-        const success = true;
-        const wrapper = setup({ success });
-        const successProp = wrapper.instance().props.success;
+    test('has `victory` piece of state as prop', () => {
+        const status = Status.Victory;
+        const wrapper = setup({ status });
+        const statusProp = wrapper.instance().props.status;
 
-        expect(successProp).toBe(success);
+        expect(statusProp).toBe(status);
     });
     test('`guessWord` action creator is a function prop', () => {
         const wrapper = setup();
@@ -98,7 +99,7 @@ describe('`guessWord` action creator call', () => {
         guessWordMock = jest.fn();
         wrapper = shallow(
             <InputUnconnected
-                success={false}
+                status={Status.InProgress}
                 guessWord={guessWordMock}
                 getSecretWord={() => {}}
                 resetGame={() => {}}
@@ -131,7 +132,7 @@ describe('`resetGame` action creator call', () => {
         getSecretWordMock = jest.fn();
         wrapper = shallow(
             <InputUnconnected
-                success={true}
+                status={Status.Victory}
                 guessWord={() => {}}
                 getSecretWord={getSecretWordMock}
                 resetGame={resetGameMock}

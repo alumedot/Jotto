@@ -1,5 +1,6 @@
 import { storeFactory } from '../test/testUtils';
 import { guessWord } from './store/guessedWords/actions';
+import { Status } from './constants';
 
 
 describe('guessWord action dispatcher', () => {
@@ -8,7 +9,7 @@ describe('guessWord action dispatcher', () => {
 
     describe('no guessed words', () => {
         let store: ReturnType<typeof storeFactory>;
-        const initialState = {secretWord};
+        const initialState = { secretWord };
         beforeEach(() => {
             store = storeFactory(initialState);
         });
@@ -17,7 +18,7 @@ describe('guessWord action dispatcher', () => {
             const newState = store.getState();
             const expectedState = {
                 ...initialState,
-                success: false,
+                status: Status.InProgress,
                 guessedWords: [{
                     guessedWord: unsuccessfulGuess,
                     letterMatchCount: 3,
@@ -30,7 +31,7 @@ describe('guessWord action dispatcher', () => {
             const newState = store.getState();
             const expectedState = {
                 secretWord,
-                success: true,
+                status: Status.Victory,
                 guessedWords: [{
                     guessedWord: secretWord,
                     letterMatchCount: 5,
@@ -51,7 +52,7 @@ describe('guessWord action dispatcher', () => {
             const newState = store.getState();
             const expectedState = {
                 secretWord,
-                success: false,
+                status: Status.InProgress,
                 guessedWords: [
                     ...guessedWords,
                     { guessedWord: unsuccessfulGuess, letterMatchCount: 3 },
@@ -64,7 +65,7 @@ describe('guessWord action dispatcher', () => {
             const newState = store.getState();
             const expectedState = {
                 secretWord,
-                success: true,
+                status: Status.Victory,
                 guessedWords: [
                     ...guessedWords,
                     { guessedWord: secretWord, letterMatchCount: 5 }

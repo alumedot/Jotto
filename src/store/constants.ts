@@ -1,8 +1,10 @@
 import { IRootReduxState } from './types';
 
+import { Status } from '../constants';
+
 
 export const DEFAULT_REDUX_STATE: IRootReduxState = {
-    success: true,
+    status: Status.InProgress,
     guessedWords: [],
     secretWord: '',
 };

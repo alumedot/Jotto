@@ -1,7 +1,7 @@
 import { getLetterMatchCount } from 'helpers';
 
 import { ActionTypes as ActionTypesGuessedWords } from '../types/ActionTypes';
-import { ActionTypes as ActionTypesSuccess } from '../../success/types/ActionTypes';
+import { ActionTypes as ActionTypesSuccess } from '../../status/types/ActionTypes';
 import { ThunkResult } from '../../types';
 import { IGuessWord } from '../types/redux';
 

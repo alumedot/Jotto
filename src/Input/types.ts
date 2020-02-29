@@ -1,9 +1,10 @@
 import { ShallowWrapper } from 'enzyme';
 import { InputUnconnected } from './Input';
+import { Status } from '../constants';
 
 
 export interface IReduxInjectedState {
-    success: boolean;
+    status: Status;
 }
 
 export interface IReduxInjectedDispatch {

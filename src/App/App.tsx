@@ -24,7 +24,7 @@ export class AppUnconnected extends Component<IProps> {
             <div className="container">
                 <h1>Jotto</h1>
                 <div>{this.props.secretWord}</div>
-                <Congrats success={this.props.success} />
+                <Congrats status={this.props.status} />
                 <Input />
                 <GuessedWords guessedWords={this.props.guessedWords} />
             </div>
@@ -32,10 +32,10 @@ export class AppUnconnected extends Component<IProps> {
     }
 }
 
-const mapStateToProps = ({secretWord, success, guessedWords}: IRootReduxState) => ({
+const mapStateToProps = ({secretWord, status, guessedWords}: IRootReduxState) => ({
     secretWord,
     guessedWords,
-    success,
+    status,
 });
 
 export default connect<
