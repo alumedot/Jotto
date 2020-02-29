@@ -14,6 +14,7 @@ const GuessedWords = (props: IProps) => {
     } else {
         const guessedWordsRows = props.guessedWords.map((word, i) => (
             <tr data-test="guessed-word" key={i}>
+                <td>{i + 1}</td>
                 <td>{word.guessedWord}</td>
                 <td>{word.letterMatchCount}</td>
             </tr>
@@ -26,6 +27,9 @@ const GuessedWords = (props: IProps) => {
                     <thead className="thead-light">
                         <tr>
                             <th>
+                                #
+                            </th>
+                            <th>
                                 Guess
                             </th>
                             <th>
@@ -37,6 +41,9 @@ const GuessedWords = (props: IProps) => {
                         { guessedWordsRows }
                     </tbody>
                 </table>
+                <div data-test="total-guesses">
+                    Total guesses: {guessedWordsRows.length}
+                </div>
             </div>
         );
     }

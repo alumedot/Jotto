@@ -23,6 +23,7 @@ export class AppUnconnected extends Component<IProps> {
         return (
             <div className="container">
                 <h1>Jotto</h1>
+                <div>{this.props.secretWord}</div>
                 <Congrats success={this.props.success} />
                 <Input />
                 <GuessedWords guessedWords={this.props.guessedWords} />

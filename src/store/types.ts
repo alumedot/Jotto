@@ -5,6 +5,7 @@ import { IState as IStateGuessedWords } from './guessedWords/types/redux';
 import { IGuessWord } from './guessedWords/types/redux';
 import { ICorrectGuess } from './success/types/redux';
 import { IGetSecretWord } from './secretWord/types/redux';
+import { IResetGame } from './common/types/redux';
 import { ThunkAction } from 'redux-thunk';
 
 
@@ -14,6 +15,10 @@ export interface IRootReduxState {
     guessedWords: IStateGuessedWords;
 }
 
-export type IAction = IGuessWord | ICorrectGuess | IGetSecretWord;
+export type IAction =
+    IGuessWord |
+    ICorrectGuess |
+    IGetSecretWord |
+    IResetGame;
 
 export type ThunkResult<R> = ThunkAction<R, IRootReduxState, undefined, IAction>;
