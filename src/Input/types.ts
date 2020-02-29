@@ -11,6 +11,7 @@ export interface IReduxInjectedDispatch {
     guessWord(word: string): void;
     getSecretWord(): void;
     resetGame(): void;
+    giveUp(): void;
 }
 
 export interface IProps extends IReduxInjectedState, IReduxInjectedDispatch {}

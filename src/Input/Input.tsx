@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { guessWord } from 'store/guessedWords/actions';
 import { getSecretWord } from 'store/secretWord/actions';
 import { resetGame } from '../store/common/actions';
+import { giveUp } from '../store/status/actions';
 
 import { IRootReduxState } from '../store/types';
 
@@ -24,31 +25,17 @@ export class InputUnconnected extends Component<IProps, IState> {
         e.preventDefault();
         const { currentGuess } = this.state;
 
-        if (currentGuess && currentGuess.length) {
+        if (currentGuess && currentGuess.length === 5) {
             this.props.guessWord(currentGuess);
             this.setState({ currentGuess: '' });
         }
-    };
-
-    resetGame = () => {
-        this.props.getSecretWord();
-        this.props.resetGame();
     };
 
     render() {
         return (
             <div data-test="component-input">
                 {
-                    this.props.status === Status.Victory ? (
-                        <button
-                            onClick={this.resetGame}
-                            data-test="new-word-button"
-                            className="btn btn-primary mb-2"
-                            type="submit"
-                        >
-                            New Word
-                        </button>
-                    ) : (
+                    this.props.status === Status.Victory || this.props.status === Status.GiveUp ? null : (
                         <form className="form-inline">
                             <input
                                 data-test="input-box"
@@ -67,7 +54,10 @@ export class InputUnconnected extends Component<IProps, IState> {
                                 Submit
                             </button>
                             <button
-                                onClick={this.submitGuessedWord}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    this.props.giveUp();
+                                }}
                                 data-test="giveUp-button"
                                 className="btn btn-danger mb-2 ml-2"
                             >
@@ -87,4 +77,4 @@ const mapStateToProps = ({ status }: IRootReduxState) => {
 
 export default connect<
     IReduxInjectedState, IReduxInjectedDispatch, {}, IRootReduxState
->(mapStateToProps, { guessWord, getSecretWord, resetGame })(InputUnconnected);
+>(mapStateToProps, { guessWord, getSecretWord, resetGame, giveUp })(InputUnconnected);

@@ -50,10 +50,6 @@ describe('render', () => {
             const component = findByTestAttr(wrapper, "component-input");
             expect(component.length).toBe(1);
         });
-        test('render new word button', () => {
-            const newWordButton = findByTestAttr(wrapper, "new-word-button");
-            expect(newWordButton.length).toBe(1);
-        });
         test('does not render input box', () => {
             const inputBox = findByTestAttr(wrapper, "input-box");
             expect(inputBox.length).toBe(0);
@@ -61,6 +57,21 @@ describe('render', () => {
         test('does not render submit button', () => {
             const submitButton = findByTestAttr(wrapper, "submit-button");
             expect(submitButton.length).toBe(0);
+        });
+    });
+    describe('`Give Up` button has been clicked', () => {
+        let wrapper: IInputWrapper;
+        beforeEach(() => {
+            const initialState = { status: Status.GiveUp };
+            wrapper = setup(initialState);
+        });
+        test('does not render `giveUp-button` component', () => {
+            const gibeUpButton = findByTestAttr(wrapper, "giveUp-button");
+            expect(gibeUpButton.length).toBe(0);
+        });
+        test('does not render submit button component', () => {
+            const gibeUpButton = findByTestAttr(wrapper, "submit-button");
+            expect(gibeUpButton.length).toBe(0);
         });
     });
 });
@@ -101,6 +112,7 @@ describe('`guessWord` action creator call', () => {
             <InputUnconnected
                 status={Status.InProgress}
                 guessWord={guessWordMock}
+                giveUp={() => {}}
                 getSecretWord={() => {}}
                 resetGame={() => {}}
             />
@@ -121,33 +133,4 @@ describe('`guessWord` action creator call', () => {
     test('input box clears on submit', () => {
         expect(wrapper.state('currentGuess')).toBe('');
     })
-});
-
-describe('`resetGame` action creator call', () => {
-    let resetGameMock: jest.Mock;
-    let getSecretWordMock: jest.Mock;
-    let wrapper: IInputWrapper;
-    beforeEach(() => {
-        resetGameMock = jest.fn();
-        getSecretWordMock = jest.fn();
-        wrapper = shallow(
-            <InputUnconnected
-                status={Status.Victory}
-                guessWord={() => {}}
-                getSecretWord={getSecretWordMock}
-                resetGame={resetGameMock}
-            />
-        );
-        const newWordButton = findByTestAttr(wrapper, "new-word-button");
-        newWordButton.simulate('click');
-    });
-
-    test('`getSecretWord` fired on `new-word-button` click', () => {
-        const getSecretWordCallCount = getSecretWordMock.mock.calls.length;
-        expect(getSecretWordCallCount).toBe(1);
-    });
-    test('`resetGame` fired on `new-word-button` click', () => {
-        const resetGameCallCount = resetGameMock.mock.calls.length;
-        expect(resetGameCallCount).toBe(1);
-    });
 });
