@@ -43,6 +43,11 @@ describe('redux properties', () => {
         const getSecretWordAction = wrapper.instance().props.getSecretWord;
         expect(getSecretWordAction).toBeInstanceOf(Function);
     });
+    test('has access to `userEnter` state', () => {
+        const wrapper = setup();
+        const userEnterProp = wrapper.instance().props.userEnter;
+        expect(userEnterProp).toBe(null);
+    })
 });
 
 test('`getSecretWord` runs on App mount', () => {
@@ -50,9 +55,11 @@ test('`getSecretWord` runs on App mount', () => {
     const wrapper = shallow(
         <AppUnconnected
             secretWord={''}
+            userEnter={null}
             guessedWords={[]}
             status={Status.InProgress}
             getSecretWord={getSecretWordMock}
+            resetGame={() => {}}
         />
     );
     wrapper.instance().componentDidMount!();

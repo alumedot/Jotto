@@ -7,4 +7,5 @@ export const DEFAULT_REDUX_STATE: IRootReduxState = {
     status: Status.InProgress,
     guessedWords: [],
     secretWord: '',
+    userEnter: null,
 };

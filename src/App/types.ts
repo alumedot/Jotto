@@ -1,6 +1,7 @@
 import { ShallowWrapper } from 'enzyme';
 
 import { IState as IStateGuessedWords } from '../store/guessedWords/types/redux';
+import { IState as IStateUserEnter } from '../store/userEnter/types/redux';
 
 import { Status } from '../constants';
 
@@ -11,6 +12,7 @@ export interface IReduxInjectedState {
     secretWord: string;
     guessedWords: IStateGuessedWords;
     status: Status;
+    userEnter: IStateUserEnter;
 }
 
 export interface IReduxInjectedDispatch {

@@ -22,7 +22,8 @@ describe('guessWord action dispatcher', () => {
                 guessedWords: [{
                     guessedWord: unsuccessfulGuess,
                     letterMatchCount: 3,
-                }]
+                }],
+                userEnter: null,
             };
             expect(newState).toEqual(expectedState);
         });
@@ -35,7 +36,8 @@ describe('guessWord action dispatcher', () => {
                 guessedWords: [{
                     guessedWord: secretWord,
                     letterMatchCount: 5,
-                }]
+                }],
+                userEnter: null,
             };
             expect(newState).toEqual(expectedState);
         });
@@ -56,7 +58,8 @@ describe('guessWord action dispatcher', () => {
                 guessedWords: [
                     ...guessedWords,
                     { guessedWord: unsuccessfulGuess, letterMatchCount: 3 },
-                ]
+                ],
+                userEnter: null,
             };
             expect(newState).toEqual(expectedState);
         });
@@ -69,7 +72,8 @@ describe('guessWord action dispatcher', () => {
                 guessedWords: [
                     ...guessedWords,
                     { guessedWord: secretWord, letterMatchCount: 5 }
-                ]
+                ],
+                userEnter: null,
             };
             expect(newState).toEqual(expectedState);
         });
