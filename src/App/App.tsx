@@ -11,6 +11,7 @@ import Congrats from '../Congrats';
 import NewWordButton from '../NewWordButton';
 import GiveUpMessage from '../GiveUpMessage';
 import UserEnterForm from '../UserEnterForm';
+import EnterWordButton from '../EnterWordButton';
 
 import { Status } from '../constants';
 import { UserEnterStatus } from '../store/userEnter/types/redux';
@@ -46,6 +47,10 @@ export class AppUnconnected extends Component<IProps> {
                     />
                     <Input/>
                     <GuessedWords guessedWords={this.props.guessedWords}/>
+                    <EnterWordButton
+                        display={this.props.guessedWords.length === 0}
+                        setEntering={() => {}}
+                    />
                 </>
             )
         }
