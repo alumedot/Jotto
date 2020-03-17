@@ -9,7 +9,12 @@ describe('guessWord action dispatcher', () => {
 
     describe('no guessed words', () => {
         let store: ReturnType<typeof storeFactory>;
-        const initialState = { secretWord };
+        const initialState = {
+            secretWord: {
+                word: secretWord,
+                error: false
+            },
+        };
         beforeEach(() => {
             store = storeFactory(initialState);
         });
@@ -31,7 +36,10 @@ describe('guessWord action dispatcher', () => {
             store.dispatch<any>(guessWord(secretWord));
             const newState = store.getState();
             const expectedState = {
-                secretWord,
+                secretWord: {
+                    word: secretWord,
+                    error: false,
+                },
                 status: Status.Victory,
                 guessedWords: [{
                     guessedWord: secretWord,
@@ -44,7 +52,10 @@ describe('guessWord action dispatcher', () => {
     });
     describe('some guessed words', () => {
         const guessedWords = [{ guessedWord: 'agile', letterMatchCount: 1 }];
-        const initialState = { guessedWords, secretWord };
+        const initialState = {
+            guessedWords,
+            secretWord: {word: secretWord, error: false},
+        };
         let store: ReturnType<typeof storeFactory>;
         beforeEach(() => {
             store = storeFactory(initialState);
@@ -53,7 +64,10 @@ describe('guessWord action dispatcher', () => {
             store.dispatch<any>(guessWord(unsuccessfulGuess));
             const newState = store.getState();
             const expectedState = {
-                secretWord,
+                secretWord: {
+                    word: secretWord,
+                    error: false,
+                },
                 status: Status.InProgress,
                 guessedWords: [
                     ...guessedWords,
@@ -67,7 +81,10 @@ describe('guessWord action dispatcher', () => {
             store.dispatch<any>(guessWord(secretWord));
             const newState = store.getState();
             const expectedState = {
-                secretWord,
+                secretWord: {
+                    word: secretWord,
+                    error: false,
+                },
                 status: Status.Victory,
                 guessedWords: [
                     ...guessedWords,

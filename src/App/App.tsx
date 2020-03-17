@@ -35,11 +35,11 @@ export class AppUnconnected extends Component<IProps> {
         } else {
             contents = (
                 <>
-                    <div>{this.props.secretWord}</div>
+                    <div>{this.props.secretWord.word}</div>
                     <Congrats status={this.props.status}/>
                     <GiveUpMessage
                         display={this.props.status === Status.GiveUp}
-                        secretWord={this.props.secretWord}
+                        secretWord={this.props.secretWord.word}
                     />
                     <NewWordButton
                         display={this.props.status === Status.Victory || this.props.status === Status.GiveUp}
@@ -78,5 +78,5 @@ const mapStateToProps = ({
 
 export default connect<IReduxInjectedState, IReduxInjectedDispatch, {}, IRootReduxState>(mapStateToProps, {
     getSecretWord,
-    resetGame
+    resetGame,
 })(AppUnconnected);

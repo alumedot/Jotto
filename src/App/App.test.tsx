@@ -28,8 +28,8 @@ describe('redux properties', () => {
     });
     test('has access to `secretWord` state', () => {
         const secretWord = 'party';
-        const wrapper = setup({ secretWord });
-        const secretWordProp = wrapper.instance().props.secretWord;
+        const wrapper = setup({secretWord: {word: secretWord, error: false}});
+        const secretWordProp = wrapper.instance().props.secretWord.word;
         expect(secretWordProp).toBe(secretWord);
     });
     test('has access to `guessedWords` state', () => {
@@ -54,7 +54,7 @@ test('`getSecretWord` runs on App mount', () => {
     const getSecretWordMock = jest.fn();
     const wrapper = shallow(
         <AppUnconnected
-            secretWord={''}
+            secretWord={{word: '', error: false}}
             userEnter={null}
             guessedWords={[]}
             status={Status.InProgress}

@@ -7,7 +7,7 @@ import { IState as IStateUserEnter } from './userEnter/types/redux';
 
 import { IGuessWord } from './guessedWords/types/redux';
 import { ICorrectGuess, IGiveUp } from './status/types/redux';
-import { IGetSecretWord } from './secretWord/types/redux';
+import { IGetSecretWord, IServerError } from './secretWord/types/redux';
 import { IResetGame } from './common/types/redux';
 import { IAction as IActionUserEnter } from './userEnter/types/redux';
 
@@ -24,6 +24,7 @@ export type IAction =
     ICorrectGuess |
     IGiveUp |
     IGetSecretWord |
+    IServerError |
     IResetGame |
     IActionUserEnter;
 

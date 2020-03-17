@@ -8,7 +8,7 @@ import { IGuessWord } from '../types/redux';
 
 export const guessWord = (guessedWord: string): ThunkResult<IGuessWord> => {
     return (dispatch, getState) => {
-        const secretWord = getState().secretWord;
+        const secretWord = getState().secretWord.word;
         const letterMatchCount = getLetterMatchCount(guessedWord, secretWord);
 
         guessedWord === secretWord && dispatch({ type: ActionTypesSuccess.CorrectGuess });
